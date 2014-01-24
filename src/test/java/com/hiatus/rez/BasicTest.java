@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hiatus.rez;
 
@@ -23,18 +23,19 @@ import com.google.common.base.Function;
 public class BasicTest {
 
 	private final static Locale	SWITZ_DE = new Locale("de", "CH");
+	private final static Locale	SWITZ_DE_2 = new Locale("de", "CH", "Berne");
 
 	@Test
 	public void doTest() {
-		ResourceBundleStore x = new ResourceBundleStore("test", Locale.UK);
-		x.registerFinder( new Function<Locale,ResourceBundle>() {
-			public final ResourceBundle apply( Locale input) {
+		final ResourceBundleStore rbs = new ResourceBundleStore("test", Locale.UK);
+		rbs.registerFinder( new Function<Locale,ResourceBundle>() {
+			public final ResourceBundle apply( final Locale input) {
 				if ( input.equals( Locale.UK )) {
 					return new ListResourceBundle() {
 
 						@Override
 						protected Object[][] getContents() {
-							return new Object[][] { {"name", "Prince Andrew"} };
+							return new Object[][] { {"name", "Prince Andrew"}, {"year", "1976"} };
 						}};
 				}
 				else if ( input.equals( Locale.US )) {
@@ -50,17 +51,22 @@ public class BasicTest {
 
 						@Override
 						protected Object[][] getContents() {
-							return new Object[][] { {"name", "Anders"} };
+							return new Object[][] { {"name", "Anders"}, {"year", "1981"} };
 						}};
 				}
 				return null;
 			}
 		} );
 
-		assertThat( x.getString( "name", Locale.US), is("Andrew"));
-		assertThat( x.getString( "name", Locale.UK), is("Prince Andrew"));
-		assertThat( x.getString( "name", Locale.GERMANY), is("Prince Andrew"));
-		assertThat( x.getString( "name", SWITZ_DE), is("Anders"));
-		assertThat( x.getStringArray("poo", Locale.UK), is( new String[]{"Anders"} ));
+		assertThat( rbs.getString( "name", Locale.US), is("Andrew"));
+		assertThat( rbs.getString( "name", Locale.UK), is("Prince Andrew"));
+		assertThat( rbs.getString( "name", Locale.GERMANY), is("Prince Andrew"));
+		assertThat( rbs.getString( "name", SWITZ_DE), is("Anders"));
+
+		assertThat( rbs.getString( "year", Locale.US), is("1976"));
+		assertThat( rbs.getString( "year", Locale.UK), is("1976"));
+		assertThat( rbs.getString( "year", Locale.GERMANY), is("1976"));
+		assertThat( rbs.getString( "year", SWITZ_DE), is("1981"));
+		assertThat( rbs.getString( "year", SWITZ_DE_2), is("1981"));
 	}
 }
