@@ -68,5 +68,7 @@ public class BasicTest {
 		assertThat( rbs.getString( "year", Locale.GERMANY), is("1976"));
 		assertThat( rbs.getString( "year", SWITZ_DE), is("1981"));
 		assertThat( rbs.getString( "year", SWITZ_DE_2), is("1981"));
+
+		assertThat( rbs.cacheSize(), is(3L));
 	}
 }

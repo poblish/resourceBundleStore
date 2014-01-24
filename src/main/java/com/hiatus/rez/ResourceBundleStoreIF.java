@@ -14,4 +14,7 @@ import java.util.Locale;
 public interface ResourceBundleStoreIF
 {
 	String getString( String inKey, Locale inLocale);
+
+	long cacheSize();
+	void invalidateCache( final Locale inLocale);
 }
