@@ -5,8 +5,8 @@
 
 package com.hiatus.rez;
 
+import java.util.Collection;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import com.google.common.cache.CacheStats;
 
@@ -17,7 +17,7 @@ import com.google.common.cache.CacheStats;
 public interface ResourceBundleStoreIF
 {
 	String getString( String inKey, Locale inLocale);
-	ResourceBundle getBundle( Locale inLocale);
+	Collection<String> getKeys( Locale inLocale);
 
 	long cacheSize();
 	CacheStats cacheStats();

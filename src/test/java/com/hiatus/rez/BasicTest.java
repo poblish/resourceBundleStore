@@ -4,8 +4,7 @@
 package com.hiatus.rez;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ListResourceBundle;
 import java.util.Locale;
@@ -94,6 +93,9 @@ public class BasicTest {
 		rbs.invalidateCache();
 		assertThat( rbs.cacheSize(), is(0L));
 		testRBS(rbs);
+
+		assertThat( rbs.getKeys( Locale.KOREAN ), hasItems("name"));
+		assertThat( rbs.getKeys( Locale.UK ), hasItems("year", "name"));
 	}
 
 	private void testRBS( ResourceBundleStore rbs) {
