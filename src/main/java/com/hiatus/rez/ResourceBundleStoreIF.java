@@ -6,6 +6,9 @@
 package com.hiatus.rez;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
+
+import com.google.common.cache.CacheStats;
 
 /**
  *
@@ -14,7 +17,10 @@ import java.util.Locale;
 public interface ResourceBundleStoreIF
 {
 	String getString( String inKey, Locale inLocale);
+	ResourceBundle getBundle( Locale inLocale);
 
 	long cacheSize();
+	CacheStats cacheStats();
+	void invalidateCache();
 	void invalidateCache( final Locale inLocale);
 }

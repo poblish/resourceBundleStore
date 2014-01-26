@@ -28,7 +28,7 @@ public class BasicTest {
 	@Test
 	public void doTest() {
 		final ResourceBundleStore rbs = new ResourceBundleStore("test", Locale.UK);
-		rbs.registerFinder( new Function<Locale,ResourceBundle>() {
+		rbs.registerLoader( new Function<Locale,ResourceBundle>() {
 			public final ResourceBundle apply( final Locale input) {
 				if ( input.equals( Locale.UK )) {
 					return new ListResourceBundle() {
@@ -62,13 +62,28 @@ public class BasicTest {
 		assertThat( rbs.getString( "name", Locale.UK), is("Prince Andrew"));
 		assertThat( rbs.getString( "name", Locale.GERMANY), is("Prince Andrew"));
 		assertThat( rbs.getString( "name", SWITZ_DE), is("Anders"));
+		assertThat( rbs.getString( "name", Locale.CHINESE), is("Prince Andrew"));
 
+		testRBS(rbs);
+		assertThat( rbs.cacheSize(), is(3L));
+		assertThat( rbs.cacheStats().hitCount(), is(19L));
+		assertThat( rbs.cacheStats().missCount(), is(15L));
+
+		testRBS(rbs);
+		assertThat( rbs.cacheSize(), is(3L));
+		assertThat( rbs.cacheStats().hitCount(), is(31L));
+		assertThat( rbs.cacheStats().missCount(), is(19L));
+
+		rbs.invalidateCache();
+		assertThat( rbs.cacheSize(), is(0L));
+		testRBS(rbs);
+	}
+
+	private void testRBS( ResourceBundleStore rbs) {
 		assertThat( rbs.getString( "year", Locale.US), is("1976"));
 		assertThat( rbs.getString( "year", Locale.UK), is("1976"));
 		assertThat( rbs.getString( "year", Locale.GERMANY), is("1976"));
 		assertThat( rbs.getString( "year", SWITZ_DE), is("1981"));
 		assertThat( rbs.getString( "year", SWITZ_DE_2), is("1981"));
-
-		assertThat( rbs.cacheSize(), is(3L));
 	}
 }
