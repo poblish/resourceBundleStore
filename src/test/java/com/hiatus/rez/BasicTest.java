@@ -5,6 +5,7 @@ package com.hiatus.rez;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.util.ListResourceBundle;
 import java.util.Locale;
@@ -26,8 +27,24 @@ public class BasicTest {
 	private final static Locale	SWITZ_DE_2 = new Locale("de", "CH", "Berne");
 
 	@Test
-	public void doTest() {
-		final ResourceBundleStore rbs = new ResourceBundleStore("test", Locale.UK);
+	public void doTestPropertiesLoad1() {
+		final ResourceBundleStore rbs = new ResourceBundleStore("Test1", Locale.UK);
+		assertThat( rbs.getString( "Name", Locale.ENGLISH), is("John"));
+		assertThat( rbs.getString( "Name", Locale.UK), is("John"));
+		assertThat( rbs.getString( "Name", Locale.JAPANESE), is("John"));
+	}
+
+	@Test
+	public void doTestPropertiesLoad2() {
+		final ResourceBundleStore rbs = new ResourceBundleStore("Test2", Locale.UK);
+		assertThat( rbs.getString( "Name", Locale.JAPANESE), is("ヒとし"));
+		assertThat( rbs.getString( "Name", Locale.ENGLISH), nullValue());
+		assertThat( rbs.getString( "Name", Locale.UK), nullValue());
+	}
+
+	@Test
+	public void doInMemoryTest() {
+		final ResourceBundleStore rbs = new ResourceBundleStore("", Locale.UK);
 		rbs.registerLoader( new Function<Locale,ResourceBundle>() {
 			public final ResourceBundle apply( final Locale input) {
 				if ( input.equals( Locale.UK )) {
