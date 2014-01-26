@@ -6,13 +6,11 @@ package com.hiatus.rez;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import java.util.ListResourceBundle;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.testng.annotations.Test;
 
-import com.google.common.base.Function;
+import com.hiatus.rez.loader.ObjectArrayLoader;
 
 /**
  * TODO
@@ -44,35 +42,9 @@ public class BasicTest {
 	@Test
 	public void doInMemoryTest() {
 		final ResourceBundleStore rbs = new ResourceBundleStore("", Locale.UK);
-		rbs.registerLoader( new Function<Locale,ResourceBundle>() {
-			public final ResourceBundle apply( final Locale input) {
-				if ( input.equals( Locale.UK )) {
-					return new ListResourceBundle() {
-
-						@Override
-						protected Object[][] getContents() {
-							return new Object[][] { {"name", "Prince Andrew"}, {"year", "1976"} };
-						}};
-				}
-				else if ( input.equals( Locale.US )) {
-					return new ListResourceBundle() {
-
-						@Override
-						protected Object[][] getContents() {
-							return new Object[][] { {"name", "Andrew"} };
-						}};
-				}
-				else if ( input.equals(SWITZ_DE)) {
-					return new ListResourceBundle() {
-
-						@Override
-						protected Object[][] getContents() {
-							return new Object[][] { {"name", "Anders"}, {"year", "1981"} };
-						}};
-				}
-				return null;
-			}
-		} );
+		rbs.registerLoader( new ObjectArrayLoader( Locale.UK, new Object[][] {{"name", "Prince Andrew"}, {"year", "1976"}} ) );
+		rbs.registerLoader( new ObjectArrayLoader( Locale.US, new Object[][] {{"name", "Andrew"}} ) );
+		rbs.registerLoader( new ObjectArrayLoader( SWITZ_DE, new Object[][] { {"name", "Anders"}, {"year", "1981"} } ) );
 
 		assertThat( rbs.getString( "name", Locale.US), is("Andrew"));
 		assertThat( rbs.getString( "name", Locale.UK), is("Prince Andrew"));
