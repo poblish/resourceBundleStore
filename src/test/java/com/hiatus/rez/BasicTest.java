@@ -41,7 +41,7 @@ public class BasicTest {
 
 	@Test
 	public void doInMemoryTest() {
-		final ResourceBundleStore rbs = new ResourceBundleStore("", Locale.UK);
+		final ResourceBundleStore rbs = new ResourceBundleStore(Locale.UK);
 		rbs.registerLoader( new ObjectArrayLoader( Locale.UK, new Object[][] {{"name", "Prince Andrew"}, {"year", "1976"}} ) );
 		rbs.registerLoader( new ObjectArrayLoader( Locale.US, new Object[][] {{"name", "Andrew"}} ) );
 		rbs.registerLoader( new ObjectArrayLoader( SWITZ_DE, new Object[][] { {"name", "Anders"}, {"year", "1981"} } ) );
