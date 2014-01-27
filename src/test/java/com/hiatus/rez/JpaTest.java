@@ -42,7 +42,7 @@ public class JpaTest {
 
 	@Test
 	public void testJpaLoad() {
-		final ResourceBundleStore rbs = new ResourceBundleStore("", Locale.UK);
+		final ResourceBundleStore rbs = new ResourceBundleStore(Locale.UK);
 		rbs.registerLoader(jpaLoader);
 
 		assertThat( rbs.getString( "name", Locale.US), is("Andrew"));
