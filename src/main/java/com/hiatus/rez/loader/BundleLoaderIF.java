@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hiatus.rez.loader;
 

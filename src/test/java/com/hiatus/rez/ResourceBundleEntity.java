@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hiatus.rez;
 
@@ -17,9 +17,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class ResourceBundleEntity {
-	private ResourceBundle bundle;
+	private final ResourceBundle bundle;
 
-	public ResourceBundleEntity( ResourceBundle rb) {
+	public ResourceBundleEntity( final ResourceBundle rb) {
 		this.bundle = checkNotNull(rb);
 	}
 

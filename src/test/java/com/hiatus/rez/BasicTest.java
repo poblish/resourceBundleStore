@@ -70,7 +70,7 @@ public class BasicTest {
 		assertThat( rbs.getKeys( Locale.UK ), hasItems("year", "name"));
 	}
 
-	private void testRBS( ResourceBundleStore rbs) {
+	private void testRBS( final ResourceBundleStore rbs) {
 		assertThat( rbs.getString( "year", Locale.US), is("1976"));
 		assertThat( rbs.getString( "year", Locale.UK), is("1976"));
 		assertThat( rbs.getString( "year", Locale.GERMANY), is("1976"));

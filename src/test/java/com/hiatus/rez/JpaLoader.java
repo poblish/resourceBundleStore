@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hiatus.rez;
 
@@ -24,8 +24,9 @@ public class JpaLoader implements BundleLoaderIF {
 	public JpaLoader() {
 	}
 
+	@Override
 	public final ResourceBundle apply( final Locale input) {
-		ResourceBundleEntity entity = em.find( ResourceBundleEntity.class, input);
+		final ResourceBundleEntity entity = em.find( ResourceBundleEntity.class, input);
 		return ( entity != null) ? entity.getBundle() : null;
 	}
 }
