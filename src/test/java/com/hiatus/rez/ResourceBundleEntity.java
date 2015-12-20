@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 
 @Entity
 public class ResourceBundleEntity {
-	private final ResourceBundle bundle;
+    private final ResourceBundle bundle;
 
-	public ResourceBundleEntity( final ResourceBundle rb) {
-		this.bundle = checkNotNull(rb);
-	}
+    public ResourceBundleEntity( final ResourceBundle rb) {
+        this.bundle = checkNotNull(rb);
+    }
 
-	public ResourceBundle getBundle() {
-		return bundle;
-	}
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
 }

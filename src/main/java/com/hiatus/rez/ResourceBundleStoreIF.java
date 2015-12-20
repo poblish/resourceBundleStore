@@ -8,13 +8,13 @@ import com.hiatus.rez.loader.BundleLoaderIF;
 
 public interface ResourceBundleStoreIF
 {
-	void registerLoader( final BundleLoaderIF loader);
+    void registerLoader( final BundleLoaderIF loader);
 
-	String getString( String inKey, Locale inLocale);
-	Collection<String> getKeys( Locale inLocale);
+    String getString( String inKey, Locale inLocale);
+    Collection<String> getKeys( Locale inLocale);
 
-	long cacheSize();
-	CacheStats cacheStats();
-	void invalidateCache();
-	void invalidateCache( final Locale inLocale);
+    long cacheSize();
+    CacheStats cacheStats();
+    void invalidateCache();
+    void invalidateCache( final Locale inLocale);
 }
