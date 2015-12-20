@@ -1,19 +1,9 @@
-/**
- *
- */
 package com.hiatus.rez.loader;
 
 import java.util.ListResourceBundle;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
-/**
- * TODO
- *
- * @author andrewregan
- *
- */
 public class ObjectArrayLoader implements BundleLoaderIF {
 
 	private final Locale locale;
@@ -24,7 +14,6 @@ public class ObjectArrayLoader implements BundleLoaderIF {
 		objVals = inVals;
 	}
 
-	@Override
 	public final ResourceBundle apply( final Locale input) {
 		if (input.equals(locale)) {
 			return new ListResourceBundle() {

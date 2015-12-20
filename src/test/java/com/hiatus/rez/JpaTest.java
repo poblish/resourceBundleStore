@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.hiatus.rez;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,12 +19,6 @@ import dagger.Module;
 import dagger.ObjectGraph;
 import dagger.Provides;
 
-/**
- * TODO
- *
- * @author andrewregan
- *
- */
 public class JpaTest {
 
 	@Inject JpaLoader jpaLoader;

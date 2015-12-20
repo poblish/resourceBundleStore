@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.hiatus.rez;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,12 +9,6 @@ import org.testng.annotations.Test;
 
 import com.hiatus.rez.loader.ObjectArrayLoader;
 
-/**
- * TODO
- *
- * @author andrewregan
- *
- */
 public class BasicTest {
 
 	private final static Locale	SWITZ_DE = new Locale("de", "CH");

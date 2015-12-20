@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.hiatus.rez;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -9,12 +6,6 @@ import java.util.ResourceBundle;
 
 import javax.persistence.Entity;
 
-/**
- * TODO
- *
- * @author andrewregan
- *
- */
 @Entity
 public class ResourceBundleEntity {
 	private final ResourceBundle bundle;

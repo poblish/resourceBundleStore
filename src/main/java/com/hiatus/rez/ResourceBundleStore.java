@@ -19,13 +19,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.hiatus.rez.loader.BundleLoaderIF;
 
-/**
- *
- * TODO
- *
- * @author andrewregan
- *
- */
 public class ResourceBundleStore implements ResourceBundleStoreIF
 {
 	private static Object _locale_locker = new byte[0];
