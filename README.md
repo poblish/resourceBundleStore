@@ -1,6 +1,8 @@
 ResourceBundleStore
 ===================
 
+[![Build Status](https://travis-ci.org/poblish/resourceBundleStore.svg?branch=master)](https://travis-ci.org/poblish/resourceBundleStore)  [![codecov.io](https://codecov.io/github/poblish/resourceBundleStore/coverage.svg?branch=master)](https://codecov.io/github/poblish/resourceBundleStore?branch=master)
+
 Managed, cached, hierarchical `Locale`-based `ResourceBundle`s for Java.
 
 Whether you load `ResourceBundle`s from your application's property files, their serialized equivalents via JPA, or an alternative data store,
